@@ -1,0 +1,7 @@
+server.exe
+*.o
+data/
+test_*.json
+probe.cpp
+.git/
+*.log

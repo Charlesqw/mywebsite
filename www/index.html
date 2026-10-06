@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人主页 | C++ Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128640;</text></svg>">
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo">
+            <span class="logo-bracket">&lt;</span>DEV<span class="logo-bracket">/&gt;</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">首页</a></li>
+            <li><a href="#about" class="nav-link">关于我</a></li>
+            <li><a href="#skills" class="nav-link">技能</a></li>
+            <li><a href="#projects" class="nav-link">作品</a></li>
+            <li><a href="#contact" class="nav-link">联系</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="菜单">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- 首屏 Hero -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <p class="hero-subtitle reveal"># Hello World, 欢迎来到我的数字空间</p>
+            <h1 class="hero-title reveal">
+                我是 <span class="gradient-text" id="heroName">你的名字</span>
+            </h1>
+            <h2 class="hero-typing reveal">
+                <span id="typingText"></span><span class="cursor">|</span>
+            </h2>
+            <p class="hero-desc reveal">
+                用 C++ 构建高性能程序，用代码创造有趣的东西。<br>
+                保持热爱，奔赴下一场山海。
+            </p>
+            <div class="hero-buttons reveal">
+                <a href="#projects" class="btn btn-primary">查看作品</a>
+                <a href="#contact" class="btn btn-ghost">联系我</a>
+            </div>
+        </div>
+        <a href="#about" class="scroll-hint" aria-label="向下滚动">
+            <span class="mouse"><span class="wheel"></span></span>
+        </a>
+    </header>
+
+    <!-- 关于我 -->
+    <section class="section" id="about">
+        <h2 class="section-title reveal"><span class="title-index">01.</span> 关于我</h2>
+        <div class="about-wrap">
+            <div class="about-img reveal">
+                <div class="img-frame">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=futuristic%20cyberpunk%20hacker%20portrait%2C%20hooded%20programmer%2C%20neon%20cyan%20and%20purple%20lights%2C%20digital%20art%2C%20highly%20detailed&image_size=square_hd"
+                         alt="头像" loading="lazy">
+                </div>
+            </div>
+            <div class="about-text reveal">
+                <p>
+                    你好！我是一名热爱底层技术的 <span class="hl">C++ 开发者</span>，
+                    喜欢探究程序运行的本质，从 STL 容器到操作系统原理都充满兴趣。
+                </p>
+                <p>
+                    我相信优秀的代码不仅要能运行，更要优雅、高效、可维护。
+                    目前正在深入学习数据结构、算法与网络编程，
+                    也在探索 Go 语言与后端开发的世界。
+                </p>
+                <ul class="about-facts">
+                    <li><span class="fact-icon">&#128293;</span> 手写 STL：deque / list / 哈希表 / 红黑树</li>
+                    <li><span class="fact-icon">&#9889;</span> 追求极致性能与代码规范</li>
+                    <li><span class="fact-icon">&#128218;</span> 持续学习，保持空杯心态</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能 -->
+    <section class="section" id="skills">
+        <h2 class="section-title reveal"><span class="title-index">02.</span> 技能栈</h2>
+        <div class="skills-grid">
+            <div class="skill-card reveal">
+                <div class="skill-icon">&#9878;&#65039;</div>
+                <h3>C++</h3>
+                <div class="skill-bar"><div class="skill-fill" data-level="85"></div></div>
+                <p>现代 C++ / STL / 模板 / 内存管理</p>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">&#128013;</div>
+                <h3>Python</h3>
+                <div class="skill-bar"><div class="skill-fill" data-level="75"></div></div>
+                <p>脚本自动化 / 工具开发</p>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">&#127760;</div>
+                <h3>Web</h3>
+                <div class="skill-bar"><div class="skill-fill" data-level="60"></div></div>
+                <p>HTML / CSS / JavaScript / HTTP</p>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">&#129504;</div>
+                <h3>算法与数据结构</h3>
+                <div class="skill-bar"><div class="skill-fill" data-level="80"></div></div>
+                <p>树 / 图 / 动态规划 / 系统设计基础</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品 -->
+    <section class="section" id="projects">
+        <div class="projects-head">
+            <h2 class="section-title reveal"><span class="title-index">03.</span> 个人作品</h2>
+            <button class="btn btn-primary btn-add reveal" id="addProjectBtn">
+                <span class="plus">+</span> 添加作品
+            </button>
+        </div>
+        <div class="projects-grid" id="projectsGrid">
+            <!-- JS 动态渲染 -->
+        </div>
+    </section>
+
+    <!-- 联系 -->
+    <section class="section" id="contact">
+        <h2 class="section-title reveal"><span class="title-index">04.</span> 联系我</h2>
+        <div class="contact-card reveal">
+            <h3>让我们一起交流编程</h3>
+            <p>无论是技术讨论、项目合作还是随便聊聊，都欢迎随时联系我</p>
+            <div class="contact-links">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <span class="ci">&#128451;</span> GitHub
+                </a>
+                <a href="mailto:your@email.com" class="contact-link">
+                    <span class="ci">&#9993;&#65039;</span> 邮箱
+                </a>
+                <a href="#" class="contact-link">
+                    <span class="ci">&#128172;</span> 微信
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Designed &amp; Built with <span class="heart">&#10084;</span> in C++ &copy; 2026</p>
+    </footer>
+
+    <!-- 添加作品弹窗 -->
+    <div class="modal-mask" id="modalMask">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>添加新作品</h3>
+                <button class="modal-close" id="modalClose" aria-label="关闭">&times;</button>
+            </div>
+            <form id="projectForm" class="modal-body">
+                <label class="field">
+                    <span class="field-label">作品标题 <em>*</em></span>
+                    <input type="text" name="title" maxlength="100" placeholder="例如：手写 STL 红黑树" required>
+                </label>
+                <label class="field">
+                    <span class="field-label">作品链接 <em>*</em></span>
+                    <input type="url" name="url" placeholder="https://github.com/your/repo" required>
+                </label>
+                <label class="field">
+                    <span class="field-label">作品描述</span>
+                    <textarea name="description" maxlength="500" rows="3" placeholder="简单介绍一下这个作品……"></textarea>
+                </label>
+                <label class="field">
+                    <span class="field-label">标签（逗号分隔，最多 8 个）</span>
+                    <input type="text" name="tags" placeholder="C++, STL, 数据结构">
+                </label>
+                <div class="form-error" id="formError"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" id="modalCancel">取消</button>
+                    <button type="submit" class="btn btn-primary">保存作品</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast 容器 -->
+    <div class="toast-wrap" id="toastWrap"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
