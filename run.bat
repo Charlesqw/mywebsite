@@ -1,10 +1,10 @@
 @echo off
-chcp 65001 >nul
+chcp 936 >nul
 if not exist server.exe (
-    echo Î´ï¿½Òµï¿½ server.exeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ build.bat ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½
+    echo Î´ÕÒµ½ server.exe£¬ÇëÏÈÔËĞĞ build.bat ½øĞĞ±àÒë
     pause
     exit /b 1
 )
-echo ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
+echo Æô¶¯¸öÈËÍøÕ¾·şÎñÆ÷...
 server.exe
 pause

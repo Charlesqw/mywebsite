@@ -1,4 +1,4 @@
-/* ================= ȫ�ֱ��� ================= */
+﻿/* ================= 全局变量 ================= */
 :root {
     --bg: #070b16;
     --bg-soft: #0d1424;
@@ -27,7 +27,7 @@ body {
 
 ::selection { background: rgba(34, 211, 238, .3); }
 
-/* ������ */
+/* 滚动条 */
 ::-webkit-scrollbar { width: 9px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
@@ -42,7 +42,7 @@ body {
     pointer-events: none;
 }
 
-/* ================= ������ ================= */
+/* ================= 导航栏 ================= */
 .navbar {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -188,7 +188,7 @@ body {
 .btn-add { padding: 10px 22px; font-size: .88rem; }
 .plus { font-size: 1.1em; margin-right: 4px; }
 
-/* ��������ʾ */
+/* 鼠标滚动提示 */
 .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); }
 .mouse {
     display: block;
@@ -211,7 +211,7 @@ body {
     100% { opacity: 0; transform: translateY(14px); }
 }
 
-/* ================= ͨ�� Section ================= */
+/* ================= 通用 Section ================= */
 .section {
     position: relative;
     z-index: 1;
@@ -242,7 +242,7 @@ body {
     margin-left: 14px;
 }
 
-/* ================= ���� ================= */
+/* ================= 关于 ================= */
 .about-wrap {
     display: grid;
     grid-template-columns: 320px 1fr;
@@ -273,7 +273,7 @@ body {
 }
 .fact-icon { margin-right: 10px; }
 
-/* ================= ���� ================= */
+/* ================= 技能 ================= */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -312,7 +312,7 @@ body {
 }
 .skill-card p { color: var(--text-dim); font-size: .88rem; }
 
-/* ================= ��Ʒ ================= */
+/* ================= 作品 ================= */
 .projects-head {
     display: flex;
     justify-content: space-between;
@@ -424,7 +424,7 @@ body {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ================= ��ϵ ================= */
+/* ================= 联系 ================= */
 .contact-card {
     text-align: center;
     background: var(--card);
@@ -470,7 +470,7 @@ body {
 }
 .heart { color: var(--pink); }
 
-/* ================= ���� ================= */
+/* ================= 弹窗 ================= */
 .modal-mask {
     position: fixed;
     inset: 0;
@@ -579,7 +579,7 @@ body {
     to { opacity: 0; transform: translateX(40px); }
 }
 
-/* ================= �����볡���� ================= */
+/* ================= 滚动入场动画 ================= */
 .reveal {
     opacity: 0;
     transform: translateY(34px);
@@ -587,7 +587,7 @@ body {
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ================= ��Ӧʽ ================= */
+/* ================= 响应式 ================= */
 @media (max-width: 860px) {
     .about-wrap { grid-template-columns: 1fr; gap: 36px; }
     .img-frame { max-width: 280px; margin: 0 auto; }

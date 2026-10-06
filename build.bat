@@ -1,10 +1,10 @@
 @echo off
-chcp 65001 >nul
-echo [BUILD] ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½ C++ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
+chcp 936 >nul
+echo [BUILD] ÕýÔÚ±àÒë C++ ¸öÈËÍøÕ¾·þÎñÆ÷...
 g++ -std=c++17 -O2 server.cpp -o server.exe -lws2_32 -lwinmm
 if %errorlevel%==0 (
-    echo [BUILD] ï¿½ï¿½ï¿½ï¿½É¹ï¿½ -^> server.exe
+    echo [BUILD] ±àÒë³É¹¦ -^> server.exe
 ) else (
-    echo [BUILD] ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ g++ ï¿½Ç·ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PATH
+    echo [BUILD] ±àÒëÊ§°Ü£¬Çë¼ì²é g++ ÊÇ·ñ°²×°²¢¼ÓÈë PATH
 )
 pause

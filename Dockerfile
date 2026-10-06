@@ -1,21 +1,21 @@
 # ============================================================
-#  ¸öÈËÍøÕ¾ÔÆ¶Ë²¿Êğ¾µÏñ (Render / Railway / Fly.io µÈÍ¨ÓÃ)
+#  ä¸ªäººç½‘ç«™äº‘ç«¯éƒ¨ç½²é•œåƒ (Render / Railway / Fly.io ç­‰é€šç”¨)
 # ============================================================
 
-# ---------- ¹¹½¨½×¶Î ----------
+# ---------- æ„å»ºé˜¶æ®µ ----------
 FROM gcc:14-bookworm AS builder
 WORKDIR /build
 COPY server.cpp httplib.h ./
 COPY www ./www
-# Linux ÏÂ cpp-httplib ½öĞè pthread, ÎŞĞèÈÎºÎ Windows ¿â
+# Linux ä¸‹ cpp-httplib ä»…éœ€ pthread, æ— éœ€ä»»ä½• Windows åº“
 RUN g++ -std=c++17 -O2 server.cpp -o server -pthread
 
-# ---------- ÔËĞĞ½×¶Î ----------
+# ---------- è¿è¡Œé˜¶æ®µ ----------
 FROM debian:bookworm-slim
 WORKDIR /app
 COPY --from=builder /build/server ./server
 COPY --from=builder /build/www ./www
-# ÔÆÆ½Ì¨Í¨¹ı PORT »·¾³±äÁ¿Ö¸¶¨¶Ë¿Ú, ³ÌĞòÆô¶¯Ê±×Ô¶¯¶ÁÈ¡
+# äº‘å¹³å°é€šè¿‡ PORT ç¯å¢ƒå˜é‡æŒ‡å®šç«¯å£, ç¨‹åºå¯åŠ¨æ—¶è‡ªåŠ¨è¯»å–
 ENV PORT=8080
 EXPOSE 8080
 CMD ["./server"]

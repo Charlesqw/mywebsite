@@ -1,13 +1,13 @@
-/* ============================================================
- * ������ҳ�����ű�
- * 1. �������米����������꣩
- * 2. ���ֻ� / �����볡 / ����������
- * 3. ��Ʒ�ļ��� / ���� / ɾ�����Խ� C++ ��� API��
+﻿/* ============================================================
+ * 个人主页交互脚本
+ * 1. 粒子网络背景（跟随鼠标）
+ * 2. 打字机 / 滚动入场 / 技能条动画
+ * 3. 作品的加载 / 添加 / 删除（对接 C++ 后端 API）
  * ============================================================ */
 (function () {
     'use strict';
 
-    /* ---------------- ���ӱ��� ---------------- */
+    /* ---------------- 粒子背景 ---------------- */
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -41,7 +41,7 @@
             ctx.fill();
         }
 
-        // ���Ӽ����� & �������
+        // 粒子间连线 & 鼠标连线
         for (let i = 0; i < particles.length; i++) {
             const a = particles[i];
             for (let j = i + 1; j < particles.length; j++) {
@@ -75,8 +75,8 @@
     resizeCanvas();
     drawParticles();
 
-    /* ---------------- ���ֻ�Ч�� ---------------- */
-    const phrases = ['C++ ������', 'STL ʵ����', '�㷨������', '����ѧϰ��', 'Go ����̽����'];
+    /* ---------------- 打字机效果 ---------------- */
+    const phrases = ['C++ 开发者', 'STL 实践者', '算法爱好者', '终身学习者', 'Go 语言探索者'];
     const typingEl = document.getElementById('typingText');
     let pi = 0, ci = 0, deleting = false;
 
@@ -99,7 +99,7 @@
     }
     typeLoop();
 
-    /* ---------------- ������ & �ƶ��˲˵� ---------------- */
+    /* ---------------- 导航栏 & 移动端菜单 ---------------- */
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-link');
     const navToggle = document.getElementById('navToggle');
@@ -108,7 +108,7 @@
     window.addEventListener('scroll', () => {
         navbar.classList.toggle('scrolled', window.scrollY > 40);
 
-        // ������ǰ����
+        // 高亮当前区域
         const sections = document.querySelectorAll('section, .hero');
         let current = '';
         sections.forEach((sec) => {
@@ -122,7 +122,7 @@
     navToggle.addEventListener('click', () => linksBox.classList.toggle('open'));
     navLinks.forEach((a) => a.addEventListener('click', () => linksBox.classList.remove('open')));
 
-    /* ---------------- �����볡���� ---------------- */
+    /* ---------------- 滚动入场动画 ---------------- */
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -133,7 +133,7 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
-    /* ---------------- ���������� ---------------- */
+    /* ---------------- 技能条动画 ---------------- */
     const skillObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -145,7 +145,7 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('.skill-fill').forEach((el) => skillObserver.observe(el));
 
-    /* ---------------- Toast ��ʾ ---------------- */
+    /* ---------------- Toast 提示 ---------------- */
     const toastWrap = document.getElementById('toastWrap');
     function toast(message, type) {
         const el = document.createElement('div');
@@ -158,7 +158,7 @@
         }, 2600);
     }
 
-    /* ---------------- ��Ʒ���� ---------------- */
+    /* ---------------- 作品管理 ---------------- */
     const grid = document.getElementById('projectsGrid');
     const modalMask = document.getElementById('modalMask');
     const form = document.getElementById('projectForm');
@@ -177,7 +177,7 @@
     function renderProjects(list) {
         if (!list.length) {
             grid.innerHTML = '<div class="empty-state"><span class="big">&#128640;</span>' +
-                '��û����Ʒ��������Ͻǡ�������Ʒ����ʼչʾ�ɣ�</div>';
+                '还没有作品，点击右上角「添加作品」开始展示吧！</div>';
             return;
         }
         grid.innerHTML = list.map((p) => {
@@ -186,25 +186,25 @@
                 .join('');
             return '<article class="project-card reveal visible">' +
                 '<h3>' + escapeHtml(p.title) + '</h3>' +
-                '<p class="project-desc">' + escapeHtml(p.description || '��������') + '</p>' +
+                '<p class="project-desc">' + escapeHtml(p.description || '暂无描述') + '</p>' +
                 '<div class="project-tags">' + tags + '</div>' +
                 '<div class="project-footer">' +
                 '<a class="project-link" href="' + escapeHtml(safeUrl(p.url)) +
-                    '" target="_blank" rel="noopener noreferrer">������Ʒ &rarr;</a>' +
-                '<button class="project-delete" data-id="' + p.id + '">&#128465; ɾ��</button>' +
+                    '" target="_blank" rel="noopener noreferrer">访问作品 &rarr;</a>' +
+                '<button class="project-delete" data-id="' + p.id + '">&#128465; 删除</button>' +
                 '</div></article>';
         }).join('');
     }
 
     async function loadProjects() {
-        grid.innerHTML = '<div class="loading-state"><div class="spinner"></div>������Ʒ�С�</div>';
+        grid.innerHTML = '<div class="loading-state"><div class="spinner"></div>加载作品中…</div>';
         try {
             const res = await fetch('/api/projects');
             if (!res.ok) throw new Error('HTTP ' + res.status);
             renderProjects(await res.json());
         } catch (err) {
             grid.innerHTML = '<div class="empty-state"><span class="big">&#9888;&#65039;</span>' +
-                '��Ʒ����ʧ�ܣ���ȷ�Ϸ�������������</div>';
+                '作品加载失败，请确认服务器正在运行</div>';
         }
     }
 
@@ -237,13 +237,13 @@
         const url = (data.get('url') || '').toString().trim();
         const description = (data.get('description') || '').toString().trim();
         const tags = (data.get('tags') || '').toString()
-            .split(/[,��]/)
+            .split(/[,，]/)
             .map((t) => t.trim())
             .filter(Boolean)
             .slice(0, 8);
 
-        if (!title) { formError.textContent = '����д��Ʒ����'; return; }
-        if (!/^https?:\/\/.+/i.test(url)) { formError.textContent = '���ӱ����� http:// �� https:// ��ͷ'; return; }
+        if (!title) { formError.textContent = '请填写作品标题'; return; }
+        if (!/^https?:\/\/.+/i.test(url)) { formError.textContent = '链接必须以 http:// 或 https:// 开头'; return; }
 
         const submitBtn = form.querySelector('button[type="submit"]');
         submitBtn.disabled = true;
@@ -254,8 +254,8 @@
                 body: JSON.stringify({ title, url, description, tags })
             });
             const result = await res.json();
-            if (!res.ok) throw new Error(result.error || '����ʧ��');
-            toast('��Ʒ���ӳɹ�', 'success');
+            if (!res.ok) throw new Error(result.error || '保存失败');
+            toast('作品添加成功', 'success');
             closeModal();
             loadProjects();
         } catch (err) {
@@ -265,18 +265,18 @@
         }
     });
 
-    // �¼�ί�У�ɾ����Ʒ
+    // 事件委托：删除作品
     grid.addEventListener('click', async (e) => {
         const btn = e.target.closest('.project-delete');
         if (!btn) return;
-        if (!confirm('ȷ��ɾ��������Ʒ��')) return;
+        if (!confirm('确定删除这条作品吗？')) return;
         try {
             const res = await fetch('/api/projects/' + btn.dataset.id, { method: 'DELETE' });
             if (!res.ok) throw new Error();
-            toast('��ɾ��', 'success');
+            toast('已删除', 'success');
             loadProjects();
         } catch (err) {
-            toast('ɾ��ʧ�ܣ����Ժ�����', 'error');
+            toast('删除失败，请稍后重试', 'error');
         }
     });
 
